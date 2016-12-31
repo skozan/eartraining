@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Ear traning tool for II-V-I cadences in jazz">
+        <meta name="keywords" content="Ear training,jazz,harmony,cadences">
+        <meta name="author" content="Stefanos Kozanis">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>II-V-I ear training</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <audio class="audio" id="complete-0" preload="auto" src="media/complete-0.mp3"></audio>
+        <audio class="audio" id="complete-1" preload="auto" src="media/complete-1.mp3"></audio>
+        <audio class="audio" id="complete-2" preload="auto" src="media/complete-2.mp3"></audio>
+        <audio class="audio" id="complete-3" preload="auto" src="media/complete-3.mp3"></audio>
+        <audio class="audio" id="complete-4" preload="auto" src="media/complete-4.mp3"></audio>
+        <audio class="audio" id="complete-5" preload="auto" src="media/complete-5.mp3"></audio>
+        <audio class="audio" id="complete-6" preload="auto" src="media/complete-6.mp3"></audio>
+        <audio class="audio" id="complete-7" preload="auto" src="media/complete-7.mp3"></audio>
+        <audio class="audio" id="complete-8" preload="auto" src="media/complete-8.mp3"></audio>
+        <audio class="audio" id="complete-9" preload="auto" src="media/complete-9.mp3"></audio>
+        <audio class="audio" id="complete-10" preload="auto" src="media/complete-10.mp3"></audio>
+        <audio class="audio" id="complete-11" preload="auto" src="media/complete-11.mp3"></audio>
+
+        <audio class="audio" id="unresolved-0" preload="auto" src="media/unresolved-0.mp3"></audio>
+        <audio class="audio" id="unresolved-1" preload="auto" src="media/unresolved-1.mp3"></audio>
+        <audio class="audio" id="unresolved-2" preload="auto" src="media/unresolved-2.mp3"></audio>
+        <audio class="audio" id="unresolved-3" preload="auto" src="media/unresolved-3.mp3"></audio>
+        <audio class="audio" id="unresolved-4" preload="auto" src="media/unresolved-4.mp3"></audio>
+        <audio class="audio" id="unresolved-5" preload="auto" src="media/unresolved-5.mp3"></audio>
+        <audio class="audio" id="unresolved-6" preload="auto" src="media/unresolved-6.mp3"></audio>
+        <audio class="audio" id="unresolved-7" preload="auto" src="media/unresolved-7.mp3"></audio>
+        <audio class="audio" id="unresolved-8" preload="auto" src="media/unresolved-8.mp3"></audio>
+        <audio class="audio" id="unresolved-9" preload="auto" src="media/unresolved-9.mp3"></audio>
+        <audio class="audio" id="unresolved-10" preload="auto" src="media/unresolved-10.mp3"></audio>
+        <audio class="audio" id="unresolved-11" preload="auto" src="media/unresolved-11.mp3"></audio>
+
+    </head>
+
+    <body>
+        <div class='container'>
+            <h3>Game rules</h3>
+            <div>
+                <form id="keys">
+                    <input type='checkbox' id="key-1" name="key" checked="checked" value='1'>Db
+                    <input type='checkbox' id="key-2" name="key" checked="checked" value='2'>D
+                    <input type='checkbox' id="key-3" name="key" checked="checked" value='3'>Eb
+                    <input type='checkbox' id="key-4" name="key" checked="checked" value='4'>E
+                    <input type='checkbox' id="key-5" name="key" checked="checked" value='5'>F
+                    <input type='checkbox' id="key-6" name="key" checked="checked" value='6'>Gb
+                    <input type='checkbox' id="key-7" name="key" checked="checked" value='7'>G
+                    <input type='checkbox' id="key-8" name="key" checked="checked" value='8'>Ab
+                    <input type='checkbox' id="key-9" name="key" checked="checked" value='9'>A
+                    <input type='checkbox' id="key-10" name="key" checked="checked" value='10'>Bb
+                    <input type='checkbox' id="key-11" name="key" checked="checked" value='11'>B
+                </form>
+                <form id="type">
+                    <input type="radio" name="type" value="complete" checked="checked">Complete cadences<br>
+                    <input type="radio" name="type" value="unresolved">Unresolved cadences<br>
+                </form>
+            </div>
+            <h3>Play the challenge</h3>
+            <div>
+                <form id="play">
+                    <input class='btn' type="submit" value="Play" id="play">
+                    <input class='btn' type="submit" value="Replay" id="replay">
+                </form>
+            </div>
+            <h3>Give the answer</h3>
+            <div>
+                <form id="answers">
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;C&nbsp;&nbsp;" id="submit-0" data-key=0>
+                    <input class='btn answer' type="submit" value="Db/C#" id="submit-1" data-key=1>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;D&nbsp;&nbsp;" id="submit-2" data-key=2>
+                    <input class='btn answer' type="submit" value="Eb/D#" id="submit-3" data-key=3>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;E&nbsp;&nbsp;" id="submit-4" data-key=4>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;F&nbsp;&nbsp;" id="submit-5" data-key=5>
+                    <input class='btn answer' type="submit" value="Gb/F#" id="submit-6" data-key=6>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;G&nbsp;&nbsp;" id="submit-7" data-key=7>
+                    <input class='btn answer' type="submit" value="Ab/G#" id="submit-8" data-key=8>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;A&nbsp;&nbsp;" id="submit-9" data-key=9>
+                    <input class='btn answer' type="submit" value="Bb/A#" id="submit-10" data-key=10>
+                    <input class='btn answer' type="submit" value="&nbsp;&nbsp;B&nbsp;&nbsp;" id="submit-11" data-key=11>
+                </form>
+            </div>
+            <h3>Results</h3>
+            <div>
+                <dl>
+                    <dt>Correct answers</dt>
+                    <dd><span id='correct'>0</span></dd>
+                    <dt>Wrong answers</dt>
+                    <dd><span id='wrong'>0</span></dd>
+                    <p>
+                        <span id='message'>
+                    </p>
+                </dl>
+            </div>
+        <small>
+            More information: <a href="https://github.com/skozan/eartraining">eartraining</a>
+        </small>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="eartraining.js"></script>
+    </body>
+    <!-- Copyright (c) 2016 Stefanos Kozanis -->
+</html>
