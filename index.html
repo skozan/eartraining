@@ -44,6 +44,7 @@
             <h3>Game rules</h3>
             <div>
                 <form id="keys">
+                    <input type='checkbox' id="key-0" name="key" checked="checked" value='0'>C
                     <input type='checkbox' id="key-1" name="key" checked="checked" value='1'>Db
                     <input type='checkbox' id="key-2" name="key" checked="checked" value='2'>D
                     <input type='checkbox' id="key-3" name="key" checked="checked" value='3'>Eb
@@ -57,8 +58,15 @@
                     <input type='checkbox' id="key-11" name="key" checked="checked" value='11'>B
                 </form>
                 <form id="type">
-                    <input type="radio" name="type" value="complete" checked="checked">Complete cadences<br>
-                    <input type="radio" name="type" value="unresolved">Unresolved cadences<br>
+                    <fieldset>
+                        <input type="radio" name="type" value="complete" checked="checked">Complete cadences<br>
+                        <input type="radio" name="type" value="unresolved">Unresolved cadences<br>
+                        <input type="radio" name="type" value="random">Random - mixed cadences<br>
+                </fieldset>
+                </form>
+                <form id="successions">
+                    <label for="successions">Number of successive cadences</label>
+                    <input id="successions" type="number" value=2 min=2 max=6>
                 </form>
             </div>
             <h3>Play the challenge</h3>
