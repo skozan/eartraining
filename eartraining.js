@@ -1,10 +1,18 @@
-var EarTraining = (function () {
+/*********************************************************************
+ *
+ * Ear Training
+ * Copyright (c) 2016 Stefanos Kozanis <s.kozanis@gmail.com>
+ *
+ ********************************************************************/
+
+var earTraining = (function () {
     var pub = {};
     var priv = {
-        got_challenge: false,
+        gotChallenge: false,
         successions: 2,
-        cadence: ['complete'],
+        progression: ['complete'],
         shots: [0],
+        playLock: false,
         correct:0,
         wrong:0,
         targets: [0]};
@@ -25,14 +33,14 @@ var EarTraining = (function () {
         10: 'eleventh',
         11: 'twelvth'};
 
-    var get_random_int = function(min, max){
+    var getRandomInt = function(min, max){
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    set_random_challenge = function() {
-        priv.cadence = [];
+    setRandomChallenge = function() {
+        priv.progression = [];
         priv.targets = [];
-        var cadence = $('input[name="type"]:checked').val();
-        var cadences = {0: 'complete', 1: 'unresolved'};
+        var progression = $('input[name="type"]:checked').val();
+        var progressions = {0: 'complete', 1: 'unresolved'};
         for(i=0; i<priv.successions; i++){
             var target = 1111; // an arbitrary big number to run the first iteration
             if (i==0)
@@ -42,53 +50,49 @@ var EarTraining = (function () {
             // different from the previous target.
             while( (!$('form#keys #key-'+target).is(':checked')) ||
                     (i>0 && priv.targets[i-1]==target))
-            {
-                target = get_random_int(0, 11);
-            }
+                target = getRandomInt(0, 11);
             priv.targets.push(target)
-            if(cadence != 'random'){
-                priv.cadence.push(cadence);
-            }
-            else
-            {
-                priv.cadence.push(cadences[get_random_int(0,1)]);
-            }
+            priv.progression.push((progression != 'random') ?
+                    progression:progressions[getRandomInt(0,1)])
         }
     },
-    get_audio = function(idx){
-        var file=".audio"+"#"+priv.cadence[idx]+"-"+priv.targets[idx];
+    getAudio = function(idx){
+        var file=".audio"+"#"+priv.progression[idx]+"-"+priv.targets[idx];
         return $(file)[0];
     },
-    play_game_challenge = function(idx){
-        var primary_aud = get_audio(0);
-        primary_aud.onended = function(){
-            get_audio(1).play();
+    playGameChallenge = function(idx){
+        // FIXME: play function should return "promise", fix mobile
+        // applications blocking audio reproduction not triggered by
+        // user gesture
+        priv.playLock = true;
+        var audio = getAudio(idx);
+        audio.onended = function(){
+            if (idx+1<priv.targets.length)
+                 playGameChallenge(idx+1);
+            else
+            {
+                priv.playLock = false;
+                updateButtons();
+            }
         };
-        primary_aud.play();
+        audio.play();
+        updateButtons();
     },
-    start_new_game = function(){
+    startNewGame = function(){
         // TODO: Require numeric input
-        console.log($('input#successions').val());
+        priv.successions = $('input#successions').val();
         // First is always C, so set zero as the first shot.
         priv.shots = [0];
-        set_random_challenge();
-        priv.got_challenge = true;
-        update_buttons();
+        priv.playLock = false;
+        setRandomChallenge();
+        priv.gotChallenge = true;
+        updateButtons();
         if(priv.successions>2)
-            set_message('Start entering your answer', '#000000');
+            setMessage('Start entering your answer', '#000000');
         else
-            set_message('Enter your answer', '#000000');
+            setMessage('Enter your answer', '#000000');
     },
-    get_game_result = function(){
-        var result = {success: true, targets: []};
-        for(i=0;i<priv.targets.length;i++){
-            if (targets[i]!=shots[i])
-                result.sucess = false;
-            result.targets[i] = priv.targets[i]
-        }
-        return result;
-    },
-    get_succession_verbal = function(succession){
+    getSuccessionVerbal = function(succession){
         var keys = succession.reduce(
                 function(map, item){
                     map.push(KEYS[item]);
@@ -96,82 +100,88 @@ var EarTraining = (function () {
                 }, []);
         return keys.join(" - ");
     },
-    need_more_shots = function(){
-        set_message('You just entered the '+
-                ORDER[priv.shots.length-1]+' cadence, please enter the '+
-                ORDER[priv.shots.length]+' cadence ('+
+    askForMoreShots = function(){
+        setMessage('You just entered the '+
+                ORDER[priv.shots.length-1]+
+                ' progression, please enter the '+
+                ORDER[priv.shots.length]+' progression ('+
                 (priv.successions-priv.shots.length)+' more). '+
                 'You answer so far: '+
-                get_succession_verbal(priv.shots), '#000000');
-        update_buttons();
+                getSuccessionVerbal(priv.shots), '#000000');
+        updateButtons();
     },
-    check_answer = function(idx){
+    checkAnswer = function(idx){
         priv.shots.push(idx);
         if (priv.shots.length<priv.targets.length)
-            return need_more_shots();
-        priv.got_challenge = false;
-        update_buttons();
-        var correct_answer = get_succession_verbal(priv.targets);
-        var user_answer = get_succession_verbal(priv.shots);
-        if (user_answer == correct_answer)
+            return askForMoreShots();
+        priv.gotChallenge = false;
+        updateButtons();
+        var correctAnswer = getSuccessionVerbal(priv.targets);
+        var userAnswer = getSuccessionVerbal(priv.shots);
+        if (userAnswer == correctAnswer)
         {
             priv.correct++;
-            set_message('Your anwser: '+user_answer+' is correct',
+            setMessage('Your anwser: '+userAnswer+' is correct',
                     '#00ff00');
         }
         else
         {
             priv.wrong++;
-            set_message('Your answer: '+user_answer+' is wrong, '+
-                    'correct answer: '+correct_answer, '#ff0000');
+            setMessage('Your answer: '+userAnswer+' is wrong, '+
+                    'correct answer: '+correctAnswer, '#ff0000');
         }
-        update_stats();
+        updateStats();
     },
-    update_buttons = function(){
-        $('form#answers input').prop('disabled', !priv.got_challenge);
+    updateButtons = function(){
+        $('form#answers input').prop('disabled', !priv.gotChallenge);
         $('form#answers input#submit-0').prop('disabled', !(
-                    priv.got_challenge && priv.successions>2 &&
+                    priv.gotChallenge && priv.successions>2 &&
                     priv.shots.length>1));
-        $('form#play input#play').prop('disabled', priv.got_challenge);
-        $('form#play input#replay').prop('disabled', !priv.got_challenge);
-        $('form#keys input').prop('disabled', priv.got_challenge);
+        $('form#form-play-controls input#play').prop('disabled',
+                priv.gotChallenge);
+        $('form#form-play-controls input#replay').prop('disabled',
+                !priv.gotChallenge);
+        $('form#keys input').prop('disabled', priv.gotChallenge);
         $('form#keys input#key-0').prop('disabled', true);
-        $('form#type input').prop('disabled', priv.got_challenge);
-        $('form#successions input').prop('disabled', priv.got_challenge);
+        $('form#type input').prop('disabled', priv.gotChallenge);
+        $('form#form-successions input').prop('disabled',
+                priv.gotChallenge);
+        if (priv.playLock)
+            $('form#form-play-controls input').prop('disabled', true);
     },
-    set_message = function(msg, color){
+    setMessage = function(msg, color){
         $('span#message').text(msg);
         $('span#message').css('color', color);
     },
-    update_stats = function(){
+    updateStats = function(){
         $('span#correct').text(priv.correct);
         $('span#wrong').text(priv.wrong);
     };
 
     pub.initialize = function(){
-        update_stats();
-        update_buttons();
-        set_message('');
+        updateStats();
+        updateButtons();
+        setMessage('');
         $('form').submit(function(){
             return false;
         });
-        $('form#play input#play').click(function(){
-            if ($('form#keys input:checked').length<2)
+        $('form#form-play-controls input#play').click(function(){
+            if ($('form#keys input:checked').length<3)
             {
                 alert('At least two keys have to be chosen');
                 return;
             }
-            start_new_game();
-            play_game_challenge();
+            startNewGame();
+            playGameChallenge(0);
         });
-        $('form#play input#replay').click(function(){
-            play_game_challenge();
+        $('form#form-play-controls input#replay').click(function(){
+            playGameChallenge(0);
         });
         $('form#answers .answer').click(function(el){
-            check_answer($(this).data('key'));
+            checkAnswer($(this).data('key'));
         });
     };
     return pub;
 }());
 
-EarTraining.initialize();
+earTraining.initialize();

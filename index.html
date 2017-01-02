@@ -3,14 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Ear traning tool for II-V-I cadences in jazz">
-        <meta name="keywords" content="Ear training,jazz,harmony,cadences">
+        <meta name="description" content="Ear traning tool for II-V-I progressions in jazz">
+        <meta name="keywords" content="Ear training,jazz,harmony,cadences,progressions">
         <meta name="author" content="Stefanos Kozanis">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>II-V-I ear training</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <title>II-V-I ear training</title>
+    </head>
 
+    <body>
         <audio class="audio" id="complete-0" preload="auto" src="media/complete-0.mp3"></audio>
         <audio class="audio" id="complete-1" preload="auto" src="media/complete-1.mp3"></audio>
         <audio class="audio" id="complete-2" preload="auto" src="media/complete-2.mp3"></audio>
@@ -36,10 +37,6 @@
         <audio class="audio" id="unresolved-9" preload="auto" src="media/unresolved-9.mp3"></audio>
         <audio class="audio" id="unresolved-10" preload="auto" src="media/unresolved-10.mp3"></audio>
         <audio class="audio" id="unresolved-11" preload="auto" src="media/unresolved-11.mp3"></audio>
-
-    </head>
-
-    <body>
         <div class='container'>
             <h3>Game rules</h3>
             <div>
@@ -59,19 +56,19 @@
                 </form>
                 <form id="type">
                     <fieldset>
-                        <input type="radio" name="type" value="complete" checked="checked">Complete cadences<br>
-                        <input type="radio" name="type" value="unresolved">Unresolved cadences<br>
-                        <input type="radio" name="type" value="random">Random - mixed cadences<br>
+                        <input type="radio" name="type" value="complete" checked="checked">Complete progressions<br>
+                        <input type="radio" name="type" value="unresolved">Unresolved progressions<br>
+                        <input type="radio" name="type" value="random">Random - mixed progressions<br>
                 </fieldset>
                 </form>
-                <form id="successions">
-                    <label for="successions">Number of successive cadences</label>
+                <form id="form-successions">
+                    <label for="successions">Number of successive progressions</label>
                     <input id="successions" type="number" value=2 min=2 max=6>
                 </form>
             </div>
             <h3>Play the challenge</h3>
             <div>
-                <form id="play">
+                <form id="form-play-controls">
                     <input class='btn' type="submit" value="Play" id="play">
                     <input class='btn' type="submit" value="Replay" id="replay">
                 </form>
@@ -100,10 +97,10 @@
                     <dd><span id='correct'>0</span></dd>
                     <dt>Wrong answers</dt>
                     <dd><span id='wrong'>0</span></dd>
-                    <p>
-                        <span id='message'>
-                    </p>
                 </dl>
+                    <p>
+                        <span id='message'></span>
+                    </p>
             </div>
         <small>
             More information: <a href="https://github.com/skozan/eartraining">eartraining</a>
