@@ -1,7 +1,7 @@
 /*********************************************************************
  *
  * Ear Training
- * Copyright (c) 2016 Stefanos Kozanis <s.kozanis@gmail.com>
+ * Copyright (c) 2017 Stefanos Kozanis <s.kozanis@gmail.com>
  *
  ********************************************************************/
 
@@ -11,6 +11,8 @@ var earTraining = (function () {
         gotChallenge: false,
         successions: 2,
         progression: ['complete'],
+        position: ['a'],
+        voicing: ['6notes'],
         shots: [0],
         playLock: false,
         correct:0,
@@ -38,9 +40,15 @@ var earTraining = (function () {
     },
     setRandomChallenge = function() {
         priv.progression = [];
+        priv.position = [];
+        priv.voicing = [];
         priv.targets = [];
-        var progression = $('input[name="type"]:checked').val();
-        var progressions = {0: 'complete', 1: 'unresolved'};
+        var progression = $('input[name="type"]:checked').val(),
+            position = $('input[name="position"]:checked').val(),
+            voicing = $('input[name="voicing"]:checked').val();
+        var progressions = {0: 'complete', 1: 'unresolved'},
+            positions = {0: 'a', 1: 'b'},
+            voicings = {0: '6notes', 1: '3notes'};
         for(i=0; i<priv.successions; i++){
             var target = 1111; // an arbitrary big number to run the first iteration
             if (i==0)
@@ -54,10 +62,17 @@ var earTraining = (function () {
             priv.targets.push(target)
             priv.progression.push((progression != 'random') ?
                     progression:progressions[getRandomInt(0,1)])
+            priv.position.push((position != 'random') ?
+                    position:positions[getRandomInt(0,1)])
+            priv.voicing.push((voicing != 'random') ?
+                    voicing:voicings[getRandomInt(0,1)])
         }
     },
     getAudio = function(idx){
-        var file=".audio"+"#"+priv.progression[idx]+"-"+priv.targets[idx];
+        var file=".audio"+"#"+priv.voicing[idx]+
+            "-"+priv.position[idx]+
+            "-"+priv.progression[idx]+
+            "-"+priv.targets[idx];
         return $(file)[0];
     },
     playGameChallenge = function(idx){
