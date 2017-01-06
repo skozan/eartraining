@@ -94,9 +94,9 @@ var earTraining = (function () {
             }).catch(function(error){
                 $('#advance-next').fadeIn('fast', function(){
                     $('form#form-advance-next input#btn-advance-next')
-                    .click(function(){
+                    .one('click', function(){
                         audio.play();
-                        $('#advance-next').fadeOut();
+                        $('#advance-next').fadeOut('fast');
                     });
                 });
             });
@@ -106,6 +106,10 @@ var earTraining = (function () {
     startNewGame = function(){
         // TODO: Require numeric input
         priv.successions = $('input#successions').val();
+        if (! priv.successions){
+            priv.successions = 2;
+            $('input#successions').val(priv.successions);
+        }
         // First is always C, so set zero as the first shot.
         priv.shots = [0];
         priv.playLock = false;
