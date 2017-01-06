@@ -121,55 +121,58 @@
 
         <div class='container'>
            <h4>Game rules</h4>
-           <form id="keys">
-                <div class="form-group">
-                    <input type='checkbox' id="key-0" name="key" checked="checked" value='0'>C
-                    <input type='checkbox' id="key-1" name="key" checked="checked" value='1'>Db
-                    <input type='checkbox' id="key-2" name="key" checked="checked" value='2'>D
-                    <input type='checkbox' id="key-3" name="key" checked="checked" value='3'>Eb
-                    <input type='checkbox' id="key-4" name="key" checked="checked" value='4'>E
-                    <input type='checkbox' id="key-5" name="key" checked="checked" value='5'>F
-                    <input type='checkbox' id="key-6" name="key" checked="checked" value='6'>Gb
-                    <input type='checkbox' id="key-7" name="key" checked="checked" value='7'>G
-                    <input type='checkbox' id="key-8" name="key" checked="checked" value='8'>Ab
-                    <input type='checkbox' id="key-9" name="key" checked="checked" value='9'>A
-                    <input type='checkbox' id="key-10" name="key" checked="checked" value='10'>Bb
-                    <input type='checkbox' id="key-11" name="key" checked="checked" value='11'>B
-                </div>
-            </form>
-            <div class="row">
-                <div class="col-md-4 col-xs-4">
-                    <form id="type">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="radio" name="type" value="complete" checked="checked">Complete progressions<br>
-                                <input type="radio" name="type" value="unresolved">Unresolved progressions<br>
-                                <input type="radio" name="type" value="random">Random - mixed progressions<br>
-                            </fieldset>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <form id="position">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="radio" name="position" value="a">First position<br>
-                                <input type="radio" name="position" value="b">Second position<br>
-                                <input type="radio" name="position" value="random" checked="checked">Random - mixed positions<br>
-                            </fieldset>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <form id="voicing">
-                        <div class="form-group">
-                            <fieldset>
-                                <input type="radio" name="voicing" value="6notes" checked="checked">6 notes voicing<br>
-                                <input type="radio" name="voicing" value="3notes">3 notes voicing<br>
-                                <input type="radio" name="voicing" value="random">Random - mixed voicings<br>
-                            </fieldset>
-                        </div>
-                    </form>
+           <a href="#game-rules" class="btn btn-info" data-toggle="collapse">Display - change rules</a>
+           <div id="game-rules" class="collapse">
+               <form id="keys">
+                    <div class="form-group">
+                        <input type='checkbox' id="key-0" name="key" checked="checked" value='0'>C
+                        <input type='checkbox' id="key-1" name="key" checked="checked" value='1'>Db
+                        <input type='checkbox' id="key-2" name="key" checked="checked" value='2'>D
+                        <input type='checkbox' id="key-3" name="key" checked="checked" value='3'>Eb
+                        <input type='checkbox' id="key-4" name="key" checked="checked" value='4'>E
+                        <input type='checkbox' id="key-5" name="key" checked="checked" value='5'>F
+                        <input type='checkbox' id="key-6" name="key" checked="checked" value='6'>Gb
+                        <input type='checkbox' id="key-7" name="key" checked="checked" value='7'>G
+                        <input type='checkbox' id="key-8" name="key" checked="checked" value='8'>Ab
+                        <input type='checkbox' id="key-9" name="key" checked="checked" value='9'>A
+                        <input type='checkbox' id="key-10" name="key" checked="checked" value='10'>Bb
+                        <input type='checkbox' id="key-11" name="key" checked="checked" value='11'>B
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-4 col-xs-4">
+                        <form id="type">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="radio" name="type" value="complete" checked="checked">Complete progressions<br>
+                                    <input type="radio" name="type" value="unresolved">Unresolved progressions<br>
+                                    <input type="radio" name="type" value="random">Random - mixed progressions<br>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <form id="position">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="radio" name="position" value="a">First position<br>
+                                    <input type="radio" name="position" value="b">Second position<br>
+                                    <input type="radio" name="position" value="random" checked="checked">Random - mixed positions<br>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <form id="voicing">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="radio" name="voicing" value="6notes" checked="checked">6 notes voicing<br>
+                                    <input type="radio" name="voicing" value="3notes">3 notes voicing<br>
+                                    <input type="radio" name="voicing" value="random">Random - mixed voicings<br>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <h4>Play the challenge</h4>
