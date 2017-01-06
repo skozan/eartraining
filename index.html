@@ -8,6 +8,9 @@
         <meta name="author" content="Stefanos Kozanis">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+            .js-hidden{display: none;}
+        </style>
         <title>II-V-I ear training</title>
     </head>
 
@@ -117,7 +120,7 @@
         <audio class="audio" id="3notes-b-unresolved-11" preload="none" src="media/3notes/b/unresolved-11.mp3"></audio>
 
         <div class='container'>
-           <h3>Game rules</h3>
+           <h4>Game rules</h4>
            <form id="keys">
                 <div class="form-group">
                     <input type='checkbox' id="key-0" name="key" checked="checked" value='0'>C
@@ -169,7 +172,7 @@
                     </form>
                 </div>
             </div>
-            <h3>Play the challenge</h3>
+            <h4>Play the challenge</h4>
             <div class="row">
                 <div class="col-md-6 col-xs-6">
                     <form id="form-play-controls">
@@ -188,7 +191,22 @@
                     </form>
                 </div>
             </div>
-            <h3>Give the answer</h3>
+            <div class="row js-hidden" id="advance-next">
+                <div class="col-md-3 col-xs-6">
+                    <form id="form-advance-next">
+                        <div class="form-group">
+                            <input class='btn btn-success' type="submit" value="Advance to next" id="btn-advance-next">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-9 col-xs-6">
+                    <p>
+                        Cannot advance to next progression automatically. Press
+                        "Advance to next" button to proceed.
+                    </p>
+                </div>
+            </div>
+            <h4>Give the answer</h4>
             <form id="answers">
                 <div class="form-group">
                     <input class='btn answer' type="submit" value="&nbsp;&nbsp;C&nbsp;&nbsp;" id="submit-0" data-key=0>
@@ -205,16 +223,16 @@
                     <input class='btn answer' type="submit" value="&nbsp;&nbsp;B&nbsp;&nbsp;" id="submit-11" data-key=11>
                 </div>
             </form>
-            <h3>Results</h3>
+            <h4>Results</h4>
+                <p>
+                    <span id='message'></span>
+                </p>
             <dl>
                 <dt>Correct answers</dt>
                 <dd><span id='correct'>0</span></dd>
                 <dt>Wrong answers</dt>
                 <dd><span id='wrong'>0</span></dd>
             </dl>
-                <p>
-                    <span id='message'></span>
-                </p>
         <small>
             More information: <a href="https://github.com/skozan/eartraining">eartraining</a>
         </small>

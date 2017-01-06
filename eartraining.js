@@ -76,9 +76,6 @@ var earTraining = (function () {
         return $(file)[0];
     },
     playGameChallenge = function(idx){
-        // FIXME: play function should return "promise", fix mobile
-        // applications blocking audio reproduction not triggered by
-        // user gesture
         priv.playLock = true;
         var audio = getAudio(idx);
         audio.onended = function(){
@@ -90,7 +87,20 @@ var earTraining = (function () {
                 updateButtons();
             }
         };
-        audio.play();
+        var playPromise = audio.play();
+        if (playPromise !== undefined){
+            playPromise.then(function(){
+                // Do not have to do something here..
+            }).catch(function(error){
+                $('#advance-next').fadeIn('fast', function(){
+                    $('form#form-advance-next input#btn-advance-next')
+                    .click(function(){
+                        audio.play();
+                        $('#advance-next').fadeOut();
+                    });
+                });
+            });
+        }
         updateButtons();
     },
     startNewGame = function(){
