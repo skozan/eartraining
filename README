@@ -13,8 +13,9 @@ Installation
 ------------
 
 Checkout repository or just copy index.html and eartraining.js in a
-directory. Create a `media` directory and unzip the contents of
-media.zip. media.zip can be downloaded from:
+directory. Copy also the contents of `static` folder. Create a `media`
+directory and unzip the contents of media.zip. media.zip can be
+downloaded from:
 
     http://users.itia.ntua.gr/soulman/eartraining/media.zip
 
@@ -23,6 +24,9 @@ e.g.
 .
 ├── eartraining.js
 ├── index.html
+├── static
+│   └── img
+│        ├── ..............
 ├── media
 │   ├── 3notes
 │   │   ├── a
@@ -37,22 +41,25 @@ e.g.
 
 
 You may copy files to use the application locally or host it in some
-server, it is a client application, requires no code executed
-server-side.
+server, it is a client application, requires no server backend.
 
-Thanks
-------
 
-Special Thanks to my piano teacher George Micros for his artistic
-and technical attribution and consultancy and for inspiring for
-similar computer and musical projects :-)
+Thanks - credits
+----------------
+
+Special thanks to my piano teacher George Micros for his artistic
+and technical attribution and consultancy and for inspiring me to
+create new computer and musical projects :-)
+
 
 License - copyright - contact
 -----------------------------
 
-Software / code provided with the MIT License (see LICENSE file)
+Software code (js) / html provided with the MIT License (see LICENSE
+file).
 
-Media (sound files) provided with the Creative Commons license:
+Media (sound files) and images provided with the Creative Commons
+license:
 
     https://creativecommons.org/licenses/by/4.0/
 
