@@ -1,6 +1,6 @@
 Ear training application for II-V-I progressions used in jazz.
 
-This is a primitive http/js application, currently hosted at:
+This is a primitive http5/js application, currently hosted at:
 
     http://users.itia.ntua.gr/soulman/eartraining/
 
@@ -8,6 +8,11 @@ Which was very useful for my jazz studies :-). Hope it may be of
 general usefulness / interest and can help you as well.
 
 Chords voicing is up to the 7th, see VOICINGS file for more info.
+
+Piano recorded is a typical 108cm YAMAHA console, a very common type
+found in many conservatories, in a good tuning shape. Recorded with a
+XY mic setup, 0.5m above the top of the piano and 1.2m far away, to
+get some "room" sound as well. Top lid in a semi-open position.
 
 Installation
 ------------
